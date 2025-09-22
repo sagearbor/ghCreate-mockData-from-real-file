@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BYOD Synthetic Data Generator</title>
+    <!-- Favicon with fallback support -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/about.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Modern Inline Accordion Styles */
+        .accordion-word {
+            color: #6366f1;
+            cursor: pointer;
+            text-decoration: none;
+            border-bottom: 2px dotted rgba(99, 102, 241, 0.3);
+            position: relative;
+            display: inline;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding-bottom: 1px;
+        }
+
+        .accordion-word:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+            border-bottom-style: solid;
+        }
+
+        .accordion-content {
+            display: none;
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.02));
+            border-left: 3px solid #6366f1;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 8px;
+            animation: slideDown 0.3s ease-out;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Nested Accordions */
+        .nested-accordion {
+            margin-left: 20px;
+            border-left: 2px solid rgba(148, 163, 184, 0.3);
+            padding-left: 15px;
+        }
+
+        .nested-accordion .accordion-word {
+            color: #10b981;
+            border-bottom-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .nested-accordion .accordion-word:hover {
+            color: #059669;
+            border-bottom-color: #10b981;
+        }
+
+        /* Toggle Button */
+        .toggle-all {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            z-index: 1000;
+            transition: all 0.2s;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .toggle-all:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        /* Compact sections */
+        .info-block {
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .info-block h2 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .info-block p {
+            margin-bottom: 1rem;
+            color: #475569;
+            font-size: 1rem;
+        }
+
+        /* Code examples */
+        .code-example {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 16px 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 12px 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-brand">🧬 BYOD Synthetic Data Generator</h1>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about" class="active">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>About BYOD Synthetic Data Generator</h1>
+            <p class="tagline">Privacy-First Synthetic Data Generation</p>
+        </header>
+
+        <button class="toggle-all" onclick="toggleAllAccordions()">
+            <span id="toggleText">Expand All Details</span>
+        </button>
+
+        <main>
+            <section class="info-block">
+                <h2>🛡️ How We Protect Your Data</h2>
+                <p>
+                    Your data is processed <span class="accordion-word" onclick="toggleAccordion(this)">locally</span>
+                    <span class="accordion-content">
+                        Data files are loaded into memory on the server, never saved to disk. The files exist only
+                        during processing and are immediately garbage collected after use. No permanent storage occurs.
+                    </span>
+                    and only <span class="accordion-word" onclick="toggleAccordion(this)">statistical metadata</span>
+                    <span class="accordion-content">
+                        We extract only aggregate statistics like mean, min, max, standard deviation, and data types.
+                        No actual data values are sent to the AI. For example, from patient names we only extract
+                        "string column, average length 15 characters, 95% unique values" - never the actual names.
+                    </span>
+                    is sent to the AI model. The LLM <span class="accordion-word" onclick="toggleAccordion(this)">NEVER sees your actual data</span>
+                    <span class="accordion-content">
+                        The Azure OpenAI model receives only:
+                        <ul>
+                            <li>Column names and types</li>
+                            <li>Statistical distributions</li>
+                            <li>Correlations between columns</li>
+                            <li>Pattern descriptions</li>
+                        </ul>
+                        It generates Python code based on these statistics, which then runs locally to create synthetic data.
+                    </span>.
+                </p>
+            </section>
+
+            <section class="info-block">
+                <h2>📊 Two Ways to Generate Data</h2>
+                <p>
+                    <strong>1. From Real Data:</strong> Upload your <span class="accordion-word" onclick="toggleAccordion(this)">data file</span>
+                    <span class="accordion-content">
+                        Supported formats: CSV, JSON, Excel (.xlsx, .xls), Parquet, TSV.
+                        The system automatically detects the format and extracts the structure.
+                        <span class="nested-accordion">
+                            Files are processed using <span class="accordion-word" onclick="toggleAccordion(this)">pandas</span>
+                            <span class="accordion-content">
+                                We use pandas DataFrames to analyze your data efficiently. This allows us to:
+                                <ul>
+                                    <li>Handle large files (though streaming for 1GB+ files is planned)</li>
+                                    <li>Detect data types automatically</li>
+                                    <li>Calculate statistics in a single pass</li>
+                                    <li>Identify patterns and correlations</li>
+                                </ul>
+                            </span>
+                            for maximum compatibility.
+                        </span>
+                    </span>
+                    to extract patterns and generate similar synthetic data.
+                </p>
+                <p>
+                    <strong>2. From Data Dictionary:</strong> Define your structure with a <span class="accordion-word" onclick="toggleAccordion(this)">data dictionary</span>
+                    <span class="accordion-content">
+                        Upload a dictionary file (JSON, YAML, CSV, Excel, PDF) that defines:
+                        <ul>
+                            <li>Column names and types</li>
+                            <li>Constraints (min/max values, allowed values)</li>
+                            <li>Required vs optional fields</li>
+                            <li>Format patterns</li>
+                        </ul>
+                        <div class="code-example">
+{
+  "columns": {
+    "patient_id": {
+      "type": "integer",
+      "constraints": {"min_value": 1000, "max_value": 9999}
+    },
+    "treatment_date": {"type": "datetime"},
+    "medication": {
+      "type": "string",
+      "constraints": {"allowed_values": ["Aspirin", "Metformin"]}
+    }
+  }
+}
+                        </div>
+                        No real data file needed - generates purely from specifications!
+                    </span>
+                    without needing any real data.
+                </p>
+                <p>
+                    <strong>Bonus:</strong> Combine both approaches by uploading data AND a dictionary for
+                    <span class="accordion-word" onclick="toggleAccordion(this)">constraint enforcement</span>
+                    <span class="accordion-content">
+                        When you provide both:
+                        <ol>
+                            <li>Statistical patterns are extracted from your real data</li>
+                            <li>Dictionary constraints override these statistics</li>
+                            <li>Result: Realistic patterns with enforced business rules</li>
+                        </ol>
+                        Example: Your data shows ages 18-95, but dictionary specifies max_value: 65.
+                        Generated data will follow the distribution pattern but cap at 65.
+                    </span>.
+                </p>
+            </section>
+
+            <section class="info-block">
+                <h2>🔬 Advanced Features</h2>
+                <p>
+                    The system includes <span class="accordion-word" onclick="toggleAccordion(this)">domain detection</span>
+                    <span class="accordion-content">
+                        Automatically recognizes:
+                        <ul>
+                            <li><strong>Date columns:</strong> Fields with 'date', 'time', 'created', 'updated' generate proper dates</li>
+                            <li><strong>Medical data:</strong> Medication names, lab tests, diagnoses use clinical reference library</li>
+                            <li><strong>Email/Phone:</strong> Patterns detected and appropriate formats generated</li>
+                            <li><strong>IDs:</strong> Sequential or UUID patterns maintained</li>
+                        </ul>
+                    </span>
+                    for intelligent data generation, a <span class="accordion-word" onclick="toggleAccordion(this)">clinical reference library</span>
+                    <span class="accordion-content">
+                        Built-in database of:
+                        <ul>
+                            <li>100+ common medications (Metformin, Lisinopril, etc.)</li>
+                            <li>50+ lab tests (CBC, Glucose, Hemoglobin A1c)</li>
+                            <li>30+ diagnoses (Hypertension, Diabetes, etc.)</li>
+                            <li>Medical units (mg, mL, mg/dL, mmol/L)</li>
+                        </ul>
+                        When medical columns are detected, realistic clinical values are used instead of random strings.
+                    </span>
+                    for healthcare data, and <span class="accordion-word" onclick="toggleAccordion(this)">smart caching</span>
+                    <span class="accordion-content">
+                        The system caches:
+                        <span class="nested-accordion">
+                            <span class="accordion-word" onclick="toggleAccordion(this)">Generation scripts</span>
+                            <span class="accordion-content">
+                                Python code generated by the LLM is cached with metadata signatures.
+                                Similar data structures reuse the same generation script, saving API calls and ensuring consistency.
+                            </span>
+                            for similar data structures, reducing API costs and improving speed.
+                            Future plans include <span class="accordion-word" onclick="toggleAccordion(this)">vector similarity search</span>
+                            <span class="accordion-content">
+                                Using Azure AI Search, we'll embed metadata and find the most similar previously processed files,
+                                allowing intelligent parameter suggestions and pattern reuse across your organization.
+                            </span>.
+                        </span>
+                    </span>
+                    to optimize performance.
+                </p>
+            </section>
+
+            <section class="info-block">
+                <h2>🚀 API Usage</h2>
+                <p>
+                    Use our RESTful API for <span class="accordion-word" onclick="toggleAccordion(this)">programmatic access</span>
+                    <span class="accordion-content">
+                        <strong>Basic generation:</strong>
+                        <div class="code-example">
+curl -X POST http://localhost:8201/generate \
+  -F "file=@your_data.csv" \
+  -F "num_rows=1000" \
+  -F "file_count=3" \
+  -F "output_format=csv"
+                        </div>
+
+                        <strong>With data dictionary:</strong>
+                        <div class="code-example">
+curl -X POST http://localhost:8201/generate-with-dictionary \
+  -F "dictionary_file=@rules.json" \
+  -F "data_file=@sample.csv" \
+  -F "num_rows=5000"
+                        </div>
+
+                        <strong>Dictionary only (no data file):</strong>
+                        <div class="code-example">
+curl -X POST http://localhost:8201/generate-with-dictionary \
+  -F "dictionary_file=@schema.yaml" \
+  -F "num_rows=1000" \
+  -F "output_format=json"
+                        </div>
+                    </span>.
+                    Generate data in <span class="accordion-word" onclick="toggleAccordion(this)">multiple formats</span>
+                    <span class="accordion-content">
+                        Output formats supported:
+                        <ul>
+                            <li><strong>CSV:</strong> Standard comma-separated values</li>
+                            <li><strong>JSON:</strong> Array of objects or nested structure</li>
+                            <li><strong>Excel:</strong> .xlsx files with proper formatting</li>
+                            <li><strong>Parquet:</strong> Columnar format for big data (coming soon)</li>
+                        </ul>
+                        Multi-file generation creates a ZIP archive automatically.
+                    </span>
+                    and integrate with your <span class="accordion-word" onclick="toggleAccordion(this)">CI/CD pipelines</span>
+                    <span class="accordion-content">
+                        Perfect for:
+                        <ul>
+                            <li>Generating test data in development pipelines</li>
+                            <li>Creating fixtures for unit tests</li>
+                            <li>Populating staging databases</li>
+                            <li>Load testing with realistic data</li>
+                        </ul>
+                        Can be deployed as Azure Function for serverless operation.
+                    </span>.
+                </p>
+            </section>
+
+            <div class="highlight-box">
+                <h3>🎯 Perfect For:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✅ Healthcare organizations needing HIPAA-compliant test data</li>
+                    <li>✅ Financial institutions requiring PCI-compliant mock data</li>
+                    <li>✅ Development teams needing realistic test datasets</li>
+                    <li>✅ Data scientists creating training data</li>
+                    <li>✅ QA teams validating edge cases</li>
+                </ul>
+            </div>
+
+            <section class="info-block">
+                <h2>📈 Architecture</h2>
+                <div class="mermaid" style="min-height: 400px;">
+                    graph TB
+                        subgraph Upload["1. Upload - Your Files"]
+                            A[Your Data File] --> B[Data Loader]
+                            A2[Data Dictionary<br/>✓ IMPLEMENTED]:::implemented --> DD[Dictionary Parser]
+                            DD --> DC[Apply Constraints]
+                        end
+
+                        subgraph Analysis["2. Analysis - Local Only"]
+                            B --> C[Metadata Extractor]
+                            C --> D[Extract Statistics<br/>NO actual values]
+                            C --> D2[Clinical Reference<br/>Library ✓]:::implemented
+                            D2 --> D3[Domain Detection<br/>✓ Date columns]:::implemented
+                            DC --> D
+                        end
+
+                        subgraph CodeGen["3. Code Generation - Privacy Safe"]
+                            D --> E{Check Cache}
+                            E -->|Found| F[Reuse Code]
+                            E -->|New| G[Send Stats + Constraints<br/>to LLM]
+                            G --> H[LLM Generates<br/>Python Code]
+                            E -.->|Future| V[Vector Similarity<br/>PLANNED]:::pending
+                        end
+
+                        subgraph CreateData["4. Create Synthetic Data"]
+                            F --> I[Run Code Locally]
+                            H --> I
+                            I --> J[Generate Data]
+                            J --> P[Preview First 10 Rows]:::implemented
+                            P --> K[Download Files<br/>ZIP Multi-file ✓]:::implemented
+                        end
+
+                        %% Styling for different states
+                        classDef implemented fill:#90EE90,stroke:#333,stroke-width:2px
+                        classDef inprogress fill:#FFE4B5,stroke:#333,stroke-width:2px
+                        classDef pending fill:#FFB6C1,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
+
+                        style C fill:#90EE90
+                        style D fill:#90EE90
+                        style G fill:#FFE4B5
+                        style K fill:#87CEEB
+                        style P fill:#87CEEB
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let allExpanded = false;
+
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            if (content && content.classList.contains('accordion-content')) {
+                content.classList.toggle('active');
+            }
+        }
+
+        function toggleAllAccordions() {
+            const accordions = document.querySelectorAll('.accordion-content');
+            const toggleBtn = document.getElementById('toggleText');
+
+            allExpanded = !allExpanded;
+
+            accordions.forEach(acc => {
+                if (allExpanded) {
+                    acc.classList.add('active');
+                } else {
+                    acc.classList.remove('active');
+                }
+            });
+
+            toggleBtn.textContent = allExpanded ? 'Collapse All Details' : 'Expand All Details';
+        }
+
+        // Add click tracking
+        document.querySelectorAll('.accordion-word').forEach(word => {
+            word.addEventListener('click', function() {
+                console.log('Expanded:', this.textContent);
+            });
+        });
+    </script>
+
+    <!-- Mermaid initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js?v=3"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose'
+            });
+        });
+    </script>
+</body>
+</html>
